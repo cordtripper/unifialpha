@@ -48,7 +48,7 @@ RUN dpkg --install unifi_sysvinit_all.deb
 # Wipe out auto-generated data
 RUN rm -rf /var/lib/unifi/*
 
-EXPOSE 8080 8081 8443 8843 8880
+EXPOSE 9000 9001 9002 9003 9004
 
 VOLUME ["/var/lib/unifi"]
 
