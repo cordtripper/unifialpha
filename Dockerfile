@@ -48,6 +48,8 @@ RUN dpkg --install unifi_sysvinit_all.deb
 # Wipe out auto-generated data
 RUN rm -rf /var/lib/unifi/*
 
+sudo keytool -genkey -keyalg RSA -alias selfsigned -keystore /usr/lib/unifi/data/keystore -storepass aircontrolenterprise -validity 365 -keysize 2048 -destalias unifi
+
 EXPOSE 9000 9001 9002 9003 9004
 
 VOLUME ["/var/lib/unifi"]
