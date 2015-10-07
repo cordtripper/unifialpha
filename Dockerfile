@@ -47,16 +47,13 @@ RUN curl -L -o unifi_sysvinit_all.deb https://www.ubnt.com/downloads/unifi/4.8.2
 RUN dpkg --install unifi_sysvinit_all.deb
 
 # Wipe out auto-generated data
-RUN rm -rf /var/lib/unifi/*
-
-RUN keytool -genkey -keyalg RSA -alias selfsigned -keystore /var/lib/unifi/data/keystore -storepass aircontrolenterprise -validity 365 -keysize 2048 -destalias unifi
-RUN keytool -genkey -keyalg RSA -alias selfsigned -keystore /usr/lib/unifi/data/keystore -storepass aircontrolenterprise -validity 365 -keysize 2048 -destalias unifi
+RUN rm -rf /var/lib/unifialpha/*
 
 EXPOSE 7000 7001 7002 7003 7004
 
-VOLUME ["/var/lib/unifi"]
+VOLUME ["/var/lib/unifialpha"]
 
-WORKDIR /var/lib/unifi
+WORKDIR /var/lib/unifialpha
 
 ADD run.sh /run.sh
 RUN chmod 755 /run.sh
