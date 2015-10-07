@@ -32,6 +32,7 @@ RUN echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true 
 RUN add-apt-repository ppa:webupd8team/java && apt-get update
 RUN apt-get -y install oracle-java8-installer
 RUN update-java-alternatives -s java-8-oracle
+RUN apt-get install oracle-java8-set-default
 ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
 ENV JAVA8_HOME /usr/lib/jvm/java-8-oracle
 
@@ -48,9 +49,10 @@ RUN dpkg --install unifi_sysvinit_all.deb
 # Wipe out auto-generated data
 RUN rm -rf /var/lib/unifi/*
 
-sudo keytool -genkey -keyalg RSA -alias selfsigned -keystore /usr/lib/unifi/data/keystore -storepass aircontrolenterprise -validity 365 -keysize 2048 -destalias unifi
+RUN keytool -genkey -keyalg RSA -alias selfsigned -keystore /var/lib/unifi/data/keystore -storepass aircontrolenterprise -validity 365 -keysize 2048 -destalias unifi
+RUN keytool -genkey -keyalg RSA -alias selfsigned -keystore /usr/lib/unifi/data/keystore -storepass aircontrolenterprise -validity 365 -keysize 2048 -destalias unifi
 
-EXPOSE 9000 9001 9002 9003 9004
+EXPOSE 7000 7001 7002 7003 7004
 
 VOLUME ["/var/lib/unifi"]
 
