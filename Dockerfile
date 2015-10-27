@@ -47,13 +47,13 @@ RUN curl -L -o unifi_sysvinit_all.deb https://www.ubnt.com/downloads/unifi/4.8.3
 RUN dpkg --install unifi_sysvinit_all.deb
 
 # Wipe out auto-generated data
-RUN rm -rf /var/lib/unifialpha/*
+RUN rm -rf /var/lib/unifi/*
 
 EXPOSE 7000 7001 7002 7003 7004
 
-VOLUME ["/var/lib/unifialpha"]
+VOLUME ["/var/lib/unifi"]
 
-WORKDIR /var/lib/unifialpha
+WORKDIR /var/lib/unifi
 
 ADD run.sh /run.sh
 RUN chmod 755 /run.sh
